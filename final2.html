@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>M&E Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #274DF5;
+        }
+
+        header {
+            background: #2B13A1;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            color: #f44336;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .hero {
+            background: url("d.jpg") center/cover;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        .product p {
+            color: red;
+            font-weight: bold;
+        }
+
+        .product button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background: #d32f2f;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>M&E</h2>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Shoes</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<div class="hero">
+    buy 1 free 1
+</div>
+
+<div class="container">
+    <h2 class="title">M&E DRINK CONNER</h2>
+
+    <div class="products">
+
+        <div class="product">
+            <img src="2.jpg">
+            <h3>milk tea</h3>
+            <p>$2.5</p>
+             <button><a href="final3.html">Buy Now</a></button>
+        </div>
+
+        <div class="product">
+            <img src="3.jpg">
+            <h3>macha latte</h3>
+            <p>$3.39</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="product">
+            <img src="5.jpg">
+            <h3>cream caffee</h3>
+            <p>$2.59</p>
+            <button>Buy Now</button>
+        </div>
+
+        <div class="product">
+            <img src="6.jpg">
+            <h3>ice cream</h3>
+            <p>$1.66</p>
+            <button>Buy Now</button>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 M&E Store | Phone: 066251513/p>
+</footer>
+
+</body>
+</html>

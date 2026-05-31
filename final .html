@@ -1,0 +1,716 @@
+<p><a href="index.html"style="color blue: ; padding: 20px;"><h2><i class="bx bx-arrow-back"></i><-Back</h2></a></p>
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ប្រព័ន្ធគណនាលទ្ធផលសិស្ស</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Khmer OS Battambang",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    overflow-x:hidden;
+
+    background:
+    linear-gradient(135deg,#020617,#0f172a,#1e293b);
+}
+
+/* Glow Background */
+
+body::before,
+body::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    z-index:-1;
+}
+
+body::before{
+    background:#0000cd;
+    top:-100px;
+    left:-100px;
+}
+
+body::after{
+    background:#d2b48c;
+    bottom:-100px;
+    right:-100px;
+}
+
+/* Container */
+
+.container{
+    width:100%;
+    max-width:760px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    color:white;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.4),
+    inset 0 1px 1px rgba(255,255,255,0.08);
+}
+
+/* Title */
+
+.title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.title .icon{
+    width:90px;
+    height:90px;
+
+    margin:auto;
+    margin-bottom:20px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:35px;
+
+    background:
+    linear-gradient(135deg,#3b82f6,#9333ea);
+
+    box-shadow:
+    0 10px 25px rgba(59,130,246,0.4);
+}
+
+.title h2{
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#cbd5e1;
+    font-size:15px;
+}
+
+/* Form */
+
+.form-group{
+    margin-bottom:22px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+
+    color:#f1f5f9;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:18px;
+}
+
+/* Input Box */
+
+.input-box{
+    position:relative;
+}
+
+.input-box i{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+
+    color:#93c5fd;
+}
+
+input{
+    width:100%;
+
+    padding:15px 15px 15px 45px;
+
+    border:none;
+    outline:none;
+
+    border-radius:15px;
+
+    font-size:16px;
+
+    color:white;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    transition:0.3s;
+}
+
+input:focus{
+    border-color:#60a5fa;
+
+    background:
+    rgba(255,255,255,0.15);
+
+    box-shadow:
+    0 0 15px rgba(96,165,250,0.3);
+}
+
+input::placeholder{
+    color:#cbd5e1;
+}
+
+/* Result Card */
+
+.result-card{
+    margin-top:30px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:25px;
+
+    padding:28px;
+}
+
+.result-title{
+    text-align:center;
+
+    font-size:24px;
+    font-weight:bold;
+
+    color:#93c5fd;
+
+    margin-bottom:22px;
+}
+
+.result-line{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.08);
+}
+
+.result-line:last-child{
+    border-bottom:none;
+}
+
+.result-label{
+    color:#cbd5e1;
+}
+
+.result-value{
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Total Score */
+
+.total-score{
+    font-size:24px;
+    color:#38bdf8;
+}
+
+/* Status */
+
+.status-badge{
+    padding:10px 20px;
+
+    border-radius:30px;
+
+    font-size:14px;
+    font-weight:bold;
+
+    color:white;
+
+    letter-spacing:0.5px;
+}
+
+.status-pass{
+    background:
+    linear-gradient(135deg,#z#a52a2a,#16a34a);
+
+    box-shadow:
+    0 5px 15px rgba(34,197,94,0.4);
+}
+
+.status-warning{
+    background:
+    linear-gradient(135deg,#f59e0b,#d97706);
+
+    box-shadow:
+    0 5px 15px rgba(245,158,11,0.4);
+}
+
+.status-danger{
+    background:
+    linear-gradient(135deg,#ef4444,#dc2626);
+
+    box-shadow:
+    0 5px 15px rgba(239,68,68,0.4);
+}
+
+/* Footer */
+
+.footer{
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* Responsive */
+
+@media(max-width:600px){
+
+    .container{
+        padding:22px;
+    }
+
+    .title h2{
+        font-size:26px;
+    }
+
+    .result-line{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Title -->
+
+    <div class="title">
+
+        <div class="icon">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+
+        <h2>ប្រព័ន្ធគណនាលទ្ធផលសិស្ស</h2>
+
+        <p>
+            Student Semester Result System
+        </p>
+
+    </div>
+
+    <!-- Student Name -->
+
+    <div class="form-group">
+
+        <label>
+            ឈ្មោះសិស្ស
+        </label>
+
+        <div class="input-box">
+
+            <i class="fa-solid fa-user"></i>
+
+            <input
+            type="text"
+            id="studentName"
+            placeholder="បញ្ចូលឈ្មោះសិស្ស">
+
+        </div>
+
+    </div>
+
+    <!-- Row -->
+
+    <div class="row">
+
+        <!-- Absences -->
+
+        <div class="form-group">
+
+            <label>
+                ចំនួនអវត្តមាន
+            </label>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-calendar-xmark"></i>
+
+                <input
+                type="number"
+                id="absences"
+                min="0"
+                value="0">
+
+            </div>
+
+        </div>
+
+        <!-- Midterm -->
+
+        <div class="form-group">
+
+            <label>
+                ពិន្ទុពាក់កណ្ដាលឆមាស
+            </label>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-pen"></i>
+
+                <input
+                type="number"
+                id="midtermScore"
+                min="0"
+                max="50"
+                value="0">
+
+            </div>
+
+        </div>
+
+        <!-- Final -->
+
+        <div class="form-group">
+
+            <label>
+                ពិន្ទុចុងឆមាស
+            </label>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                <input
+                type="number"
+                id="finalScore"
+                min="0"
+                max="50"
+                value="0">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Result Card -->
+
+    <div class="result-card">
+
+        <div class="result-title">
+
+            <i class="fa-solid fa-chart-simple"></i>
+
+            លទ្ធផលឆមាស
+
+        </div>
+
+        <!-- Name -->
+
+        <div class="result-line">
+
+            <span class="result-label">
+                ឈ្មោះសិស្ស
+            </span>
+
+            <span
+            class="result-value"
+            id="outName">
+                -
+            </span>
+
+        </div>
+
+        <!-- Midterm -->
+
+        <div class="result-line">
+
+            <span class="result-label">
+                ពិន្ទុពាក់កណ្ដាលឆមាស
+            </span>
+
+            <span
+            class="result-value"
+            id="outMidterm">
+                0
+            </span>
+
+        </div>
+
+        <!-- Final -->
+
+        <div class="result-line">
+
+            <span class="result-label">
+                ពិន្ទុចុងឆមាស
+            </span>
+
+            <span
+            class="result-value"
+            id="outFinal">
+                0
+            </span>
+
+        </div>
+
+        <!-- Total -->
+
+        <div class="result-line">
+
+            <span class="result-label">
+                ពិន្ទុសរុប
+            </span>
+
+            <span
+            class="result-value total-score"
+            id="outTotal">
+                0
+            </span>
+
+        </div>
+
+        <!-- Status -->
+
+        <div class="result-line">
+
+            <span class="result-label">
+                ស្ថានភាពចុងក្រោយ
+            </span>
+
+            <span
+            class="status-badge"
+            id="outStatus">
+                -
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="footer">
+
+        © 2026 Student Result System
+
+    </div>
+
+</div>
+
+<script>
+
+/* Inputs */
+
+const studentNameInput =
+document.getElementById('studentName');
+const absencesInput =
+document.getElementById('absences');
+
+const midtermInput =
+document.getElementById('midtermScore');
+
+const finalInput =
+document.getElementById('finalScore');
+
+/* Outputs */
+
+const outName =
+document.getElementById('outName');
+
+const outMidterm =
+document.getElementById('outMidterm');
+
+const outFinal =
+document.getElementById('outFinal');
+
+const outTotal =
+document.getElementById('outTotal');
+
+const outStatus =
+document.getElementById('outStatus');
+
+/* Function */
+
+function calculateResult(){
+
+    const name =
+    studentNameInput.value.trim()
+     "មិនមាន";
+
+    const absences =
+    parseInt(absencesInput.value)
+     0;
+
+    const midtermScore =
+    parseFloat(midtermInput.value)
+     0;
+
+    const finalScore =
+    parseFloat(finalInput.value)
+     0;
+
+    /* Total */
+
+    const totalScore =
+    midtermScore + finalScore;
+
+    let resultStatus = "";
+    let statusClass = "";
+
+    /* Rules */
+
+    if(absences >= 16){
+
+        resultStatus =
+        "ត្រូវរៀនឡើងវិញ";
+
+        statusClass =
+        "status-danger";
+
+    }
+
+    else if(absences >= 11){
+
+        resultStatus =
+        "ប្រឡងសង";
+
+        statusClass =
+        "status-warning";
+
+    }
+
+    else{
+
+        if(totalScore < 40
+        || midtermScore < 15){
+
+            resultStatus =
+            "ធ្លាក់";
+
+            statusClass =
+            "status-danger";
+
+        }
+
+        else if(
+        totalScore >= 40
+        && totalScore < 60){
+
+            resultStatus =
+            "ប្រឡងប៉ូវ";
+
+            statusClass =
+            "status-warning";
+
+        }
+
+        else{
+
+            resultStatus =
+            "ជាប់";
+
+            statusClass =
+            "status-pass";
+
+        }
+
+    }
+
+    /* Output */
+
+    outName.textContent = name;
+
+    outMidterm.textContent =
+    midtermScore;
+
+    outFinal.textContent =
+    finalScore;
+
+    outTotal.textContent =
+    totalScore;
+
+    outStatus.textContent =
+    resultStatus;
+
+    outStatus.className =
+    "status-badge " + statusClass;
+
+}
+
+/* Events */
+
+studentNameInput.addEventListener(
+'input',
+calculateResult
+);
+
+absencesInput.addEventListener(
+'input',
+calculateResult
+);
+
+midtermInput.addEventListener(
+'input',
+calculateResult
+);
+
+finalInput.addEventListener(
+'input',
+calculateResult
+);
+
+/* First Load */
+
+calculateResult();
+
+</script>
+
+</body>
+</html>

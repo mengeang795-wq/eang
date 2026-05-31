@@ -1,0 +1,391 @@
+<p><a href="index.html"style="color blue: ; padding: 20px;"><h2><i class="bx bx-arrow-back"></i><-Back</h2></a></p>
+<html lang="km">
+<head><!DOCTYPE html>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ទស្សន៍ទាយលេខទូរសព្ទ តាមបែបចិន</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(145deg, #1e3c2c 0%, #2a4a35 100%);
+            font-family: 'Khmer OS', 'Khmer OS Muol', 'Khmer OS Battambang', 'Noto Sans Khmer', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            max-width: 620px;
+            width: 100%;
+            background: #165CF0;
+            background-image: radial-gradient(circle at 10% 20%, rgba(255,245,215,0.6) 2%, #16DAF0 90%);
+            border-radius: 64px 48px 64px 48px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,200,0.8);
+            overflow: hidden;
+            padding: 1.8rem 1.5rem 2.2rem;
+            transition: all 0.2s;
+            border: 1px solid #A5AFB0;
+        }
+        h1 {
+            font-size: 1.9rem;
+            text-align: center;
+            color: #C9F50F;
+            text-shadow: 2px 2px 0 #86F50F;
+            margin-top: 0;
+            margin-bottom: 0.25rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            word-break: keep-all;
+        }
+        .sub {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b4c2c;
+            border-bottom: 2px dashed #deb887;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+        .method-box {
+            background: #0FF5D2;
+            padding: 12px 16px;
+            border-radius: 36px;
+            font-size: 0.85rem;
+            color: #4a3a28;
+            margin-bottom: 28px;
+            border-left: 8px solid #e9b35f;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .example {
+            background: #0FD6F5;
+            border-radius: 28px;
+            padding: 10px 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin: 12px 0;
+            color: #2c472e;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #7a4316;
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 3;
+            padding: 16px 20px;
+            font-size: 1.2rem;
+            font-family: monospace, 'Khmer OS';
+            border-radius: 60px;
+            border: 2px solid #dba551;
+            background: #fffcf5;
+            outline: none;
+            transition: 0.2s;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        input:focus {
+            border-color: #b96f20;
+            box-shadow: 0 0 0 3px rgba(201, 120, 30, 0.3);
+            background: #ffffff;
+        }
+        button {
+            flex: 1;
+            background: #d98c2b;
+            border: none;
+            padding: 14px 18px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            font-family: 'Khmer OS', sans-serif;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 5px 0 #7a411a;
+        }
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #7a411a;
+        }
+        .result-area {
+            background: #820FF5;
+            background: linear-gradient(120deg, #2f2a1f, #1f1b12);
+            border-radius: 48px;
+            padding: 18px 20px;
+            margin: 20px 0 10px;
+            color: #ffefcf;
+            text-align: center;
+            border: 1px solid #ebc17e;
+        }
+        .result-number {
+            font-size: 2rem;
+            font-weight: bold;
+            background: #00000033;
+            display: inline-block;
+            padding: 0 16px;
+            border-radius: 80px;
+            font-family: monospace;
+        }
+        .verdict {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 12px 0 8px;
+            letter-spacing: 2px;
+        }
+        .meaning {
+            font-size: 1rem;
+            line-height: 1.4;
+            background: #AB273D;
+            border-radius: 36px;
+            padding: 12px;
+        }
+        .footer-note {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #aa8b60;
+        }
+        hr {
+            border-color: #D20FF5;
+            margin: 16px 0;
+        }
+        @media (max-width: 500px) {
+            .card {
+                padding: 1.2rem;
+            }
+            h1 { font-size: 1.5rem; }
+            .verdict { font-size: 1.3rem; }
+            button { font-size: 1rem; padding: 12px; }
+        }
+        .table-link {
+            text-align: center;
+            font-size: 0.75rem;
+            margin-top: 15px;
+            color: #820FF5;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>📞 ទស្សន៍ទាយលេខទូរសព្ទ</h1>
+    <div class="sub">តាមបែបជនជាតិចិន វិភាគដោយលេខ៦ខ្នង់ចុង</div>
+
+    <div class="method-box">
+        🧮 <strong>វិធីសាស្ត្រ</strong> : យកលេខទូរសព្ទ <strong>៦ខ្នង់ចុងក្រោយ</strong> ចែកនឹង 80 រួចយកចំនួនទសភាគ (លេខក្រោយខ្ទង់) គុណនឹង 80 បានលទ្ធផលចន្លោះ 1 ដល់ 80។ ផ្ទៀងតារាងទស្សន៍ទាយ។
+        <div class="example">
+            📘 ឧទាហរណ៍: 093927592 → យក 927592 ÷ 80 = 11594.9 → យក 0.9 × 80 = <strong>72</strong> → មើលលេខ 72
+        </div>
+        <div>✳️ ចំណាំ: បើចំនួនក្រោយខ្ទង់ 0.0 (ដូចជា 80) នោះគឺស្មើ 80។</div>
+    </div>
+
+    <label>📱 បញ្ចូលលេខទូរសព្ទរបស់អ្នក</label>
+    <div class="input-group">
+        <input type="tel" id="phoneInput" placeholder="ឧ: 093927592 ឬ 012345678" inputmode="numeric" pattern="[0-9]*">
+        <button id="predictBtn">ទស្សន៍ទាយ</button>
+    </div>
+
+    <div id="resultBox" class="result-area" style="display: none;">
+        <div style="font-size: 0.9rem;">🔮 លទ្ធផលទស្សន៍ទាយ</div>
+        <div class="result-number" id="displayCode">--</div>
+        <div class="verdict" id="verdictText"></div>
+        <div class="meaning" id="meaningText"></div>
+    </div>
+
+    <div class="footer-note">
+        * ផ្អែកលើតារាងបុរាណចិន | យកតែលេខ៦ខ្នង់ចុងប៉ុណ្ណោះ
+    </div>
+    <div class="table-link">
+        ⚡ លទ្ធផលចន្លោះ 1 - 80
+    </div>
+</div>
+
+<script>
+    // ======================== តារាងលទ្ធផល 1 ដល់ 80 ==========================
+    // រៀបរាប់តាមរូបភាពទាំងអស់ (ខ្លឹមសារពិតប្រាកដពី file)
+    const fortuneMap = {
+        1: { type: "ល្អណាស់", detail: "រឹកចំរើនល្អអាចទទួលបានជ័យជំនះ" },
+        2: { type: "ធម្មតា", detail: "មានលាកមានបង់មិនទទួលផលអ្វីទេ" },
+        3: { type: "ល្អណាស់", detail: "មានភាពរឹកចំរើនអ្វីៗអាចសំរចបានដូចបំណង" },
+        4: { type: "អាក្រក់", detail: "ផ្លូវអនាគតមានឧបសគ្គរច្រើនលំបាកវេទនា" },
+        5: { type: "ល្អណាស់", detail: "រកសុីមានបានទទួលបានទាំងកិត្តិយសទាំងផលប្រយោជន៍" },
+        6: { type: "ល្អណាស់", detail: "មានសំណាងច្រើនអាចទទួលបានគុណសម្ត្រាតិធំ" },
+        7: { type: "ល្អ", detail: "មានចិត្តអត់ធុត់ពិតជាអាចទទួលបានជោគជ័យជំងឺ" },
+        8: { type: "ល្អ", detail: "អាចមានឪកាសទទួលបានជោគជ័យ" },
+        9: { type: "អាក្រក់", detail: "ឯកកោរ គ្មានអ្នកជួយពិបាកទទួលរទព្យមកវិញ" },
+        10: { type: "អាក្រក់", detail: "ខាតបង់ទឹកចិត្តនិងកម្លាំងទេ ខិតខំដោយឥតបានផល" },
+        11: { type: "ល្អ", detail: "មានលំនឹងល្អអ្នកដៃទច្រៀចសរសើរ" },
+        12: { type: "អាក្រក់", detail: "ទន់ខ្មោយធ្វើអ្វីក៏មិនបានសំរចដែរ" },
+        13: { type: "ល្អណាស់", detail: "មានសំណាងល្អក្តីសង្ឃឹមច្រើន" },
+        14: { type: "ធម្មតា", detail: "ជ័យជំនះ ឬហាជ័យពីងផ្អែកលើការតាំងចិត្តរបស់ខ្លួន" },
+        15: { type: "ល្អ", detail: "ជ័យជំនះច្រើនមានការរីកចំរើន" },
+        16: { type: "ល្អណាស់", detail: "អាចសំរចកិច្ចការធំបានទទួលទាំងកិត្តិយសទាំងផលប្រោយាជន៍" },
+        17: { type: "ល្អ", detail: "មានអ្នកធំជួយអាចទទួលបានជោគជ័យ" },
+        18: { type: "ល្អ", detail: "មានភាពរីកចចច្រើននឹងបានសំរចដូចបំណង" },
+        19: { type: "អាក្រក់", detail: "មានទំនាស់ច្រើនមានឧបសគ្គគ្រាប់ជំពូក" },
+        20: { type: "អាក្រក់", detail: "ឧបសគ្គច្រើនឈឺច្រើនពិបាកចិត្តច្រើន" },
+        21: { type: "ល្អ", detail: "ធ្វើការល្អិតល្អន់មានប្រាថ្នា" },
+        22: { type: "អាក្រក់ណាស់", detail: "ខាតបង់លាភធ្វើអ្វីក៏មិនបានសំរចដូចបំណងដែរ" },
+        23: { type: "ល្អណាស់", detail: "កិត្តិយសល្អសំរចកិច្ចការធំបាន" },
+        24: { type: "ល្អ", detail: "ពឹងផ្អែកលើសមត្ថភាពផ្ទាល់ខ្លួនអាចសច្រេចកិច្ចការបាន" },
+        25: { type: "ល្អណាស់", detail: "មានសំណាងល្អមានគេជួយ" },
+        26: { type: "អាក្រក់ណាស់", detail: "មានឧបសគ្គច្រើន" },
+        27: { type: "ល្អ", detail: "អាចមានលាកសំណាងនិងជ័យជំនះ" },
+        28: { type: "ល្អណាស់", detail: "សំឡើងខ្ពស់រកសុំមានបាន" },
+        29: { type: "អាក្រក់", detail: "សំណាងល្អនិងអាក្រក់ កើតមានឡើងព្រោមគ្នា" },
+        30: { type: "ល្អណាស់", detail: "ទទួលបាននូវលាកសំណាងនិងកិត្តិយស" },
+        31: { type: "ល្អណាស់", detail: "មានសំណាងអាចទទួលជោគជ័យ" },
+        32: { type: "ល្អ", detail: "មានប្រាជ្ញាល្បាស់ដែមានភាពរីកចម្រើនច្រើន" },
+        33: { type: "អាក្រក់ណាស់", detail: "ជួបឧបសគ្គមិនចេះអស់ពិបាកនឹងទទួលបានជោគជ័យ" },
+        34: { type: "ធម្មតា", detail: "ត្រូវមានលំនឹងចិត្តកុំលោកលន់" },
+        35: { type: "អាក្រក់", detail: "ឧបសគ្គច្រើនតែជួបភាពលំបាក និងក្រឡូត់" },
+        36: { type: "ល្អ", detail: "ឧបសគ្គអាចក្លាយជាសំណាងធ្វើអ្វីៗអាចបានដូចបំណង" },
+        37: { type: "ធម្មតា", detail: "អាចទទួលបាននូវកិត្តិយសតែពិបាកទទួលនូវលាកសំណាង" },
+        38: { type: "ល្អណាស់", detail: "អនាគតភ្លឺស្វាងត្រចះត្រចង់" },
+        39: { type: "ធម្មតា", detail: "មានសំណាងឬឧបសគ្គមានមិនទៀង" },
+        40: { type: "ល្អណាស់", detail: "មានសំណាងល្អអនាគតល្អហើយភ្លឺស្វាង ត្រចះត្រចង់" },
+        41: { type: "អាក្រក់", detail: "ការរកស៊ីត្រូវខាតបង់" },
+        42: { type: "ល្អ", detail: "បើមានចិត្តអត់ធុត់សំណាងអាក្រក់ អាចក្លាយជាមានលាក" },
+        43: { type: "អាក្រក់", detail: "ឡើងអ្វីៗពិបាកសម្រមចដូចបំណងប្រាថ្នា" },
+        44: { type: "ល្អ", detail: "មានសំណាងមានភាពរីកចម្រើន" },
+        45: { type: "ល្អណាស់", detail: "ជួបឧបសគ្គ មិនចេះអស់" },
+        46: { type: "ល្អណាស់", detail: "មានគេតាមជួយថែរក្សា អាចប្រកបមុខជំនួញបាន" },
+        47: { type: "ល្អណាស់", detail: "មានទាំងកិត្តិយសមានទាំងទ្រព្យសម្បត្តិ" },
+        48: { type: "ធម្មតា", detail: "មានឧបសគ្គហើយក៏មានសំណាងដែរ" },
+        49: { type: "ធម្មតា", detail: "មានឧបសគ្គហើយក៏មានសំណាងដែរ" },
+        50: { type: "ធម្មតា", detail: "មានឧបសគ្គហើយក៏មានសំណាងដែរ" }, // 50 មិនមានក្នុងរូបលម្អិត ប៉ុន្តែដាក់បំពេញឲ្យពេញ
+        51: { type: "ល្អ", detail: "ខិតខំនិងទទួលបានដោគជ័យ" },
+        52: { type: "អាក្រក់", detail: "ពេលបានលាកសំណាងនិងមានឧបសគ្គគាមមកពីក្រោយ" },
+        53: { type: "ធម្មតា", detail: "ខិតខំប្រឹងប្រែងខ្លាំងតែទទួលបានលទ្ធផលតិចតួច" },
+        54: { type: "អាក្រក់", detail: "ល្អតែសំបកក្រៅ តែតាមពិតមានឧបសគ្គ និងត្រារៈថ្នាក់" },
+        55: { type: "អាក្រក់ណាស់", detail: "ជួបឧបសគ្គ មិនចេះអស់ អាចមានត្រារៈថ្នាក់" },
+        56: { type: "ល្អ", detail: "ខិតខំប្រឹងប្រែងអាចតែប្រែនូវដោគវាសនា" },
+        57: { type: "ធម្មតា", detail: "មានឧបសគ្គត្រើន តែសំណាងល្អនឹងមកពីក្រោយ" },
+        58: { type: "អាក្រក់", detail: "ពេលជួបនិងបញ្ជាចិត្តតមិត្តនឹងរពិបាកសំរចចិត្ត" },
+        59: { type: "ធម្មតា", detail: "ចិត្តច្រកច្របល់ពិបាកសំរចចិត្ត" },
+        60: { type: "អាក្រក់", detail: "ជួបឧបសគ្គត្រើន" },
+        61: { type: "អាក្រក់", detail: "មានរៀងស្មុគស្មាញត្រើនពិបាកសំរចអ្វីៗដែលបានប៉ងទុក" },
+        62: { type: "ល្អ", detail: "ខិតខំនិងទទួលបាននូវផលប្រយោជន៍" },
+        63: { type: "អាក្រក់", detail: "ខំប្រឹង តែគ្មានទទួលបានផលប្រយោជន៍អ្វីឡើយ" },
+        64: { type: "ល្អ", detail: "មានសំណាងល្អអាចប្រកបមុខជំនួញបានធំ" },
+        65: { type: "ធម្មតា", detail: "ល្អ តែខ្លះទំនុកចិត្តលើខ្លួនឯង" },
+        66: { type: "ល្អណាស់", detail: "ធ្វើអ្វីៗតែងបានសំរចមាសប្រាក់ហួរចូលត្រើន" },
+        67: { type: "ល្អ", detail: "ប្រាសិនបើអាចក្តាប់ជាប់នូវឱកាសល្អអាចទទួលបានដោគជំនះ" },
+        68: { type: "អាក្រក់", detail: "ស្ថានភាពមិននឹងនអាចចាញ់ចោកគេ ជួបឧបសគ្គត្រើន" },
+        69: { type: "អាក្រក់", detail: "រកសុីខាតបង់ជួបភាពច្របូកច្របល់និងឧបសគ្គ" },
+        70: { type: "ធម្មតា", detail: "សំណាងល្អឬអាក្រក់អាស្រ័យលើភាពគ្មាបាន" },
+        71: { type: "ធម្មតា", detail: "សំណាងល្អនិងឧបសគ្គអាស្រ័យលើសកម្មភាព" }, // add 71 (missing but fill)
+        72: { type: "ល្អ", detail: "មានសុកម្មដ្ឋលនិងសំណាងល្អ" },
+        73: { type: "ធម្មតា", detail: "បើសិនជារុញរាពិបាកនិងទទួលជោគជំនះណាស់" },
+        74: { type: "ធម្មតា", detail: "មានសំណាងល្អណាស់ក៏មានសំណាងអាក្រក់ដែរ" },
+        75: { type: "អាក្រក់", detail: "ការងាររកសុីខាតបង់ឱកាស អស់ប្រពួសម្បត្តិ" },
+        76: { type: "ល្អ", detail: "ពិបាកមុនស្រួលណុករកាយ" },
+        77: { type: "ធម្មតា", detail: "មានលាកមានបង់មិនអាចសុកស្តីម្ត" },
+        78: { type: "ធម្មតា", detail: "អនាគតមិនសូវភ្លឺស្លាងទេហើយក៏មិនសូវមានប្រពួសម្បត្តិដែរ" },
+        79: { type: "អាក្រក់", detail: "បានហើយតែប្រោជាខាតបង់ទៅវិញខិតខំឥតប្រយោជន៍" },
+        80: { type: "ល្អណាស់", detail: "អាចទទួលបានជោគជ័យប្រើន។" }
+    };
+    // បំពេញចន្លោះខ្វះ (50,71)
+    if(!fortuneMap[50]) fortuneMap[50] = { type:"ធម្មតា", detail:"សំណាងមានឡើងចុះ ត្រូវពិចារណាឲ្យបានច្បាស់" };
+    if(!fortuneMap[71]) fortuneMap[71] = { type:"ធម្មតា", detail:"ភាពរីកចម្រើនយឺត ប៉ុន្តែអាចសម្រេចបានតាមពេលវេលា" };
+
+    function getFortuneByNumber(num) {
+        if (num >= 1 && num <= 80) {
+            return fortuneMap[num];
+        }
+        return { type: "មិនត្រឹមត្រូវ", detail: "លេខមិនស្ថិតក្នុងចន្លោះ 1-80" };
+    }
+
+    function computePrediction(phoneNumber) {
+        // ដកយកតែលេខ (filter non-digit)
+        let digits = phoneNumber.replace(/\D/g, '');
+        if (digits.length === 0) return null;
+        // យក 6 ខ្នង់ចុងក្រោយ
+        let lastSix = digits.slice(-6);
+        if (lastSix.length < 6) {
+            // បើលេខសរុបតិចជាង 6 ខ្នង់? យកទាំងអស់ទៅគិត
+            lastSix = digits.padStart(6, '0'); 
+        }
+        let numberVal = parseInt(lastSix, 10);
+        if (isNaN(numberVal)) return null;
+        // ចែកនឹង 80
+        let division = numberVal / 80;
+        let fractional = division - Math.floor(division);
+        // ដោះស្រាយករណី fractional ជិត 1 (ដូច 0.9999)
+        let multiplier = parseFloat((fractional).toFixed(10));
+        let result = Math.round(multiplier * 80);
+        // ប្រសិនបើ result = 0 (ឧទាហរណ៍ 80 ចែកផុំ) ត្រូវតែឲ្យ 80
+        if (result === 0 && fractional < 0.0001) {
+            result = 80;
+        } else if (result === 0 && fractional > 0.01) {
+            // ប្រសិនបើ 0.9999 -> 80
+            result = 80;
+        }
+        // Check rounding edge: ex: 0.9999*80=79.992 -> round 80
+        let raw = fractional * 80;
+        let rounded = Math.round(raw);
+        if (rounded === 80) result = 80;
+        else if (rounded === 0 && raw < 0.5 && raw > 0) result = Math.floor(raw) || 1;
+        
+        if (result === 0) result = 80;
+        return result;
+    }
+
+    function displayResult(code) {
+        const fortune = getFortuneByNumber(code);
+        document.getElementById('displayCode').innerText = code;
+        document.getElementById('verdictText').innerHTML = `✨ ${fortune.type} ✨`;
+        document.getElementById('meaningText').innerHTML = fortune.detail;
+        document.getElementById('resultBox').style.display = 'block';
+    }
+
+    function showNoPhoneAlert() {
+        alert("សូមបញ្ចូលលេខទូរសព្ទរបស់អ្នកសិន!");
+    }
+
+    function handlePrediction() {
+        let phoneInput = document.getElementById('phoneInput').value.trim();
+        if (phoneInput === "") {
+            showNoPhoneAlert();
+            return;
+        }
+        // ពិនិត្យថាមានតែលេខ
+        let digitsOnly = phoneInput.replace(/\D/g, '');
+        if (digitsOnly.length === 0) {
+            showNoPhoneAlert();
+            return;
+        }
+        let resultCode = computePrediction(phoneInput);
+        if (resultCode === null || resultCode < 1 || resultCode > 80) {
+            alert("កើតមានបញ្ហាក្នុងការគណនា សូមពិនិត្យលេខទូរសព្ទម្តងទៀត");
+            return;
+        }
+        displayResult(resultCode);
+    }
+
+    // attach event
+    const btn = document.
+    getElementById('predictBtn');
+    btn.addEventListener('click', handlePrediction);
+    // ស្តាប់ព្រឹត្តិការណ៍ Enter
+    const inputField = document.getElementById('phoneInput');
+    inputField.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handlePrediction();
+        }
+    });
+</script>
+</body>
+</html>

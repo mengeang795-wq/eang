@@ -1,0 +1,143 @@
+<p><a href="index.html"style="color blue: ; padding: 20px;"><h2><i class="bx bx-arrow-back"></i><-Back</h2></a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Now - M&E Shoes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product h2 {
+            margin: 10px 0;
+        }
+
+        .price {
+            color: red;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d32f2f;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #111;
+            color: white;
+            margin-top: 30px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><a href="caffee ni.html">buy now</a></h1>
+</header>
+
+<div class="container">
+
+    <!-- Product Info -->
+    <div class="product">
+        <img src="2.jpg">
+        <h2>milk tea</h2>
+        <p class="price">$2.5</p>
+        <p>Original milk tea .</p>
+    </div>
+
+    <!-- Order Form -->
+    <div class="order">
+        <h2>Order drink </h2>
+
+        <form>
+            <label>buy now</label>
+
+            <label>number phone</label>
+            <input type="text" placeholder="066251513">
+
+            <label>banteay meanchey</label>
+            <input type="text" placeholder="Your address">
+
+            <label> Size</label>
+            <select>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                
+            </select>
+
+            <label>Quantity</label>
+            <input type="number" value="1">
+
+            <button>Confirm Order</button>
+        </form>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Nike Store | Order via Phone: 010 222 333</p>
+</footer>
+
+</body>
+</html>
