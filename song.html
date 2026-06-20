@@ -1,0 +1,365 @@
+<p><a href="index.html"style="color blue: ; padding: 20px;"><h2><i class="bx bx-arrow-back"></i><-Back</h2></a></p>
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ហ្គេមបញ្ញា — សួរ ឆ្លើយ</title>
+<style>
+  :root{
+    --bg-deep:#10122b;
+    --bg-mid:#1c1f4a;
+    --card:#22265c;
+    --card-edge:#393d8a;
+    --gold:#ffc857;
+    --gold-deep:#e0a526;
+    --correct:#3ddc97;
+    --wrong:#ff5d6c;
+    --ink:#f4f1ff;
+    --muted:#aab0e8;
+    --pill:#2d3173;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{
+    margin:0; min-height:100%;
+    font-family:'Segoe UI','Khmer OS', sans-serif;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(255,200,87,0.10), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(61,220,151,0.08), transparent 45%),
+      linear-gradient(160deg, var(--bg-deep), var(--bg-mid));
+    color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    padding:18px;
+  }
+  #app{
+    width:100%; max-width:460px;
+  }
+  .brand{
+    text-align:center; margin-bottom:18px;
+  }
+  .brand .em{ font-size:34px; }
+  .brand h1{
+    margin:4px 0 2px; font-size:22px; font-weight:800;
+    letter-spacing:.5px;
+    background:linear-gradient(90deg,var(--gold),#fff2cf);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .brand p{ margin:0; font-size:12.5px; color:var(--muted); }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-edge);
+    border-radius:20px;
+    padding:22px 20px 24px;
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+  }
+
+  /* progress + meta row */
+  .meta{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:14px;
+  }
+  .pill{
+    background:var(--pill); color:var(--muted);
+    font-size:12.5px; font-weight:700;
+    padding:6px 12px; border-radius:20px;
+  }
+  .pill b{ color:var(--gold); }
+  .timer{
+    width:42px; height:42px; border-radius:50%;
+    border:3px solid var(--pill);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:14px; color:var(--gold);
+    position:relative;
+  }
+  .progress-track{
+    height:6px; border-radius:6px; background:var(--pill);
+    margin-bottom:18px; overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; background:linear-gradient(90deg,var(--gold-deep),var(--gold));
+    border-radius:6px; transition:width .35s ease;
+  }
+
+  .qtext{
+    font-size:18px; font-weight:700; line-height:1.5;
+    margin:4px 0 18px;
+    min-height:54px;
+  }
+
+  .opt{
+    display:flex; align-items:center; gap:10px;
+    width:100%; text-align:left;
+    background:var(--pill); color:var(--ink);
+    border:1px solid var(--card-edge);
+    border-radius:14px;
+    padding:13px 14px;
+    font-size:15px; font-weight:600;
+    margin-bottom:10px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:transform .08s ease, background .15s ease, border-color .15s ease;
+  }
+  .opt:hover{ border-color:var(--gold); }
+  .opt:active{ transform:scale(0.98); }
+  .opt .tag{
+    width:26px; height:26px; flex:none; border-radius:8px;
+    background:rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:800; color:var(--muted);
+  }
+  .opt.correct{ background:rgba(61,220,151,0.18); border-color:var(--correct); }
+  .opt.correct .tag{ background:var(--correct); color:#0a2f22; }
+  .opt.wrong{ background:rgba(255,93,108,0.18); border-color:var(--wrong); }
+  .opt.wrong .tag{ background:var(--wrong); color:#330a0e; }
+  .opt.disabled{ pointer-events:none; opacity:.85; }
+
+  .nextRow{ display:flex; justify-content:flex-end; margin-top:6px; }
+  .btn{
+    font-family:inherit;
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    color:#1c1308; font-weight:800; font-size:14.5px;
+    border:none; border-radius:14px;
+    padding:11px 24px;
+    cursor:pointer;
+    box-shadow:0 6px 0 rgba(0,0,0,.25);
+    transition:transform .08s ease;
+    opacity:0; pointer-events:none;
+  }
+  .btn.show{ opacity:1; pointer-events:auto; }
+  .btn:active{ transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,.25); }
+
+  /* start & result screens */
+  .center{ text-align:center; }
+  .bigEmoji{ font-size:54px; margin-bottom:6px; }
+  .center h2{ margin:0 0 6px; font-size:22px; font-weight:800; }
+  .center p.sub{ color:var(--muted); font-size:13.5px; margin:0 0 20px; line-height:1.5; }
+  .scoreBig{
+    font-size:54px; font-weight:900; color:var(--gold); line-height:1;
+  }
+  .scoreBig span{ font-size:22px; color:var(--muted); font-weight:700; }
+  .grade{ margin:10px 0 22px; font-size:14.5px; color:var(--ink); font-weight:700; }
+
+  .startBtn{
+    width:100%;
+    font-family:inherit;
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    color:#1c1308; font-weight:800; font-size:16px;
+    border:none; border-radius:16px;
+    padding:15px;
+    cursor:pointer;
+    box-shadow:0 8px 0 rgba(0,0,0,.25);
+  }
+  .startBtn:active{ transform:translateY(4px); box-shadow:0 4px 0 rgba(0,0,0,.25); }
+
+  .hidden{ display:none !important; }
+
+  .topicsRow{
+    display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:22px;
+  }
+  .topicChip{
+    font-size:11.5px; color:var(--muted);
+    background:var(--pill); padding:5px 11px; border-radius:20px;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="brand">
+    <div class="em">🧠</div>
+    <h1>ហ្គេមបញ្ញា</h1>
+    <p>សួរ&nbsp;–&nbsp;ឆ្លើយ &nbsp;•&nbsp; ចេះប៉ុនណា សាកល្បងមើល!</p>
+  </div>
+
+  <div class="card" id="card">
+
+    <!-- START -->
+    <div id="startScreen" class="center">
+      <div class="bigEmoji">🎯</div>
+      <h2>ត្រៀមខ្លួនហើយឬនៅ?</h2>
+      <p class="sub">សំណួរទាំង ១២ លើបញ្ញាសាមញ្ញ ភូមិសាស្ត្រ វិទ្យាសាស្ត្រ និងចំណេះដឹងទូទៅ។ មានពេល ១៥វិនាទីក្នុងមួយសំណួរ។</p>
+      <div class="topicsRow">
+        <span class="topicChip">🌍 ភូមិសាស្ត្រ</span>
+        <span class="topicChip">🔬 វិទ្យាសាស្ត្រ</span>
+        <span class="topicChip">📜 ប្រវត្តិសាស្ត្រ</span>
+        <span class="topicChip">💡 ចំណេះដឹងទូទៅ</span>
+      </div>
+      <button class="startBtn" id="startBtn">ចាប់ផ្តើមលេង →</button>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quizScreen" class="hidden">
+      <div class="meta">
+        <div class="pill">សំណួរ <b id="qIndex">1</b>/<span id="qTotal">12</span></div>
+        <div class="timer" id="timerBox">15</div>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="qtext" id="qtext">សំណួរនៅទីនេះ...</div>
+      <div id="optionsBox"></div>
+      <div class="nextRow"><button class="btn" id="nextBtn">បន្ទាប់ →</button></div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="resultScreen" class="hidden center">
+      <div class="bigEmoji" id="resultEmoji">🏆</div>
+      <h2>បានចប់ហើយ!</h2>
+      <div class="scoreBig"><span id="scoreWrap"><span id="scoreNum">0</span>/<span id="scoreTotal">12</span></span></div>
+      <div class="grade" id="gradeText">ល្អណាស់!</div>
+      <button class="startBtn" id="retryBtn">លេងម្តងទៀត ↻</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+
+  const QUESTIONS = [
+    { q: "ប្រទេសណាមួយត្រូវបានគេស្គាល់ថាជា “ទឹកដីព្រះអាទិត្យរះ”?", opts: ["ប្រទេសចិន","ប្រទេសជប៉ុន","ប្រទេសកូរ៉េ","ប្រទេសថៃ"], a:1 },
+    { q: "តើភពណាមួយនៅជិតព្រះអាទិត្យបំផុត?", opts: ["ភពមាស","ភពអង្គារ","ភពពុធ","ភពសុក្រ"], a:2 },
+    { q: "តើទន្លេមេគង្គមានប្រវែងប្រហែលប៉ុន្មានគីឡូម៉ែត្រ?", opts: ["~1,200 គីឡូម៉ែត្រ","~2,700 គីឡូម៉ែត្រ","~4,350 គីឡូម៉ែត្រ","~6,000 គីឡូម៉ែត្រ"], a:2 },
+    { q: "តើសត្វណាមួយត្រូវបានគេចាត់ទុកជាសត្វដែលធំជាងគេលើផែនដី?", opts: ["ដំរី","ត្រីបាឡែនពូជប្លោក (Blue Whale)","ខារីហ្គីហ្គីហ្ស","ខ្លាធំ"], a:1 },
+    { q: "តើប្រាសាទអង្គរវត្តស្ថិតនៅខេត្តណា?", opts: ["ខេត្តសៀមរាប","ខេត្តបាត់ដំបង","ខេត្តកំពង់ចាម","ខេត្តកំពត"], a:0 },
+    { q: "តើធាតុគីមីណាមួយមាននិមិត្តសញ្ញា “O”?", opts: ["មាស","អុកស៊ីសែន","អុកស៊ីដ","អូស្មីញ៉ូម"], a:1 },
+    { q: "តើខួរក្បាលមនុស្សពេញវ័យមានទម្ងន់ប្រហែលប៉ុន្មាន?", opts: ["~500 ក្រាម","~1,400 ក្រាម","~2,500 ក្រាម","~800 ក្រាម"], a:1 },
+    { q: "តើសហប្រជាជាតិ (UN) ត្រូវបានបង្កើតឡើងនៅឆ្នាំណា?", opts: ["១៩៣៩","១៩៤៥","១៩៥០","១៩៦០"], a:1 },
+    { q: "តើបន្លែ ឬផ្លែឈើណាមួយមានជាតិវីតាមីន C ច្រើនជាងគេ?", opts: ["ប៉េងប៉ោះ","ប៉េងប៉ោះបារាំង","ក្រូចឆ្មា","ម្នាស់"], a:2 },
+    { q: "តើភាសាណាមួយត្រូវបានគេនិយាយច្រើនជាងគេនៅលើពិភពលោក (តាមចំនួនអ្នកនិយាយដើម)?", opts: ["ភាសាអង់គ្លេស","ភាសាអេស្ប៉ាញ","ភាសាចិនកុកងឺ (Mandarin)","ភាសាហិណ្ឌូ"], a:2 },
+    { q: "តើល្បឿនពន្លឺប្រហែលប៉ុន្មានគីឡូម៉ែត្រ/វិនាទី?", opts: ["~30,000 km/s","~150,000 km/s","~300,000 km/s","~1,000,000 km/s"], a:2 },
+    { q: "តើបេះដូងមនុស្សមានប៉ុន្មានបន្ទប់ (chambers)?", opts: ["២","៣","៤","៥"], a:2 },
+  ];
+
+  const TIME_PER_Q = 15;
+
+  let order = [];
+  let current = 0;
+  let score = 0;
+  let timer = null;
+  let timeLeft = TIME_PER_Q;
+  let answered = false;
+
+  const startScreen = document.getElementById('startScreen');
+  const quizScreen = document.getElementById('quizScreen');
+  const resultScreen = document.getElementById('resultScreen');
+
+  const qIndexEl = document.getElementById('qIndex');
+  const qTotalEl = document.getElementById('qTotal');
+  const progressFill = document.getElementById('progressFill');
+  const qtextEl = document.getElementById('qtext');
+  const optionsBox = document.getElementById('optionsBox');
+  const timerBox = document.getElementById('timerBox');
+  const nextBtn = document.getElementById('nextBtn');
+
+  document.getElementById('startBtn').addEventListener('click', startQuiz);
+  document.getElementById('retryBtn').addEventListener('click', startQuiz);
+  nextBtn.addEventListener('click', goNext);
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function startQuiz(){
+    order = shuffle(QUESTIONS.map((_,i)=>i));
+    current = 0;
+    score = 0;
+    startScreen.classList.add('hidden');
+    resultScreen.classList.add('hidden');
+    quizScreen.classList.remove('hidden');
+    qTotalEl.textContent = order.length;
+    showQuestion();
+  }
+
+  function showQuestion(){
+    answered = false;
+    const qData = QUESTIONS[order[current]];
+    qIndexEl.textContent = current+1;
+    progressFill.style.width = ((current)/order.length*100)+'%';
+    qtextEl.textContent = qData.q;
+    optionsBox.innerHTML = '';
+    nextBtn.classList.remove('show');
+
+    const tags = ['ក','ខ','គ','ឃ'];
+    qData.opts.forEach((opt, idx)=>{
+      const btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.innerHTML = `<span class="tag">${tags[idx]}</span><span>${opt}</span>`;
+      btn.addEventListener('click', ()=>selectAnswer(idx, btn));
+      optionsBox.appendChild(btn);
+    });
+
+    timeLeft = TIME_PER_Q;
+    timerBox.textContent = timeLeft;
+    timerBox.style.color = 'var(--gold)';
+    clearInterval(timer);
+    timer = setInterval(()=>{
+      timeLeft--;
+      timerBox.textContent = timeLeft;
+      if(timeLeft <= 5){ timerBox.style.color = 'var(--wrong)'; }
+      if(timeLeft <= 0){
+        clearInterval(timer);
+        revealAnswer(-1);
+      }
+    }, 1000);
+  }
+
+  function selectAnswer(idx, btnEl){
+    if(answered) return;
+    clearInterval(timer);
+    revealAnswer(idx);
+  }
+
+  function revealAnswer(chosenIdx){
+    if(answered) return;
+    answered = true;
+    const qData = QUESTIONS[order[current]];
+    const opts = optionsBox.querySelectorAll('.opt');
+    opts.forEach((el, idx)=>{
+      el.classList.add('disabled');
+      if(idx === qData.a){
+        el.classList.add('correct');
+      } else if(idx === chosenIdx){
+        el.classList.add('wrong');
+      }
+    });
+    if(chosenIdx === qData.a){
+      score++;
+    }
+    nextBtn.classList.add('show');
+    nextBtn.textContent = (current === order.length-1) ? 'មើលលទ្ធផល 🏁' : 'បន្ទាប់ →';
+  }
+
+  function goNext(){
+    current++;
+    if(current >= order.length){
+      showResult();
+    } else {
+      showQuestion();
+    }
+  }
+
+  function showResult(){
+    quizScreen.classList.add('hidden');
+    resultScreen.classList.remove('hidden');
+    document.getElementById('scoreNum').textContent = score;
+    document.getElementById('scoreTotal').textContent = order.length;
+
+    const pct = score/order.length;
+    let emoji, grade;
+    if(pct === 1){ emoji='🏆'; grade='ល្អអស្ចារ្យ! ត្រឹមត្រូវទាំងអស់!'; }
+    else if(pct >= 0.75){ emoji='🌟'; grade='ល្អណាស់! ស្ទើរតែគ្រប់ចំនុច!'; }
+    else if(pct >= 0.5){ emoji='👍'; grade='ល្អបង្គួរ បន្តប្រឹងប្រែង!'; }
+    else if(pct >= 0.25){ emoji='💪'; grade='ត្រូវហាត់បន្ថែមទៀត!'; }
+    else { emoji='🌱'; grade='កុំបាក់ទឹកចិត្ត សាកល្បងម្តងទៀត!'; }
+    document.getElementById('resultEmoji').textContent = emoji;
+    document.getElementById('gradeText').textContent = grade;
+  }
+
+})();
+</script>
+</body>
+</html>
